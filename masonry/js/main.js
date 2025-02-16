@@ -2,9 +2,11 @@ const galleryMasonry = (function() {
   let columnsCount = 4, gap = 15,
       colsHeight = new Array(columnsCount).fill(0),
       container = document.querySelector('.gallery-masonry'),
-      list = container.querySelector('.gallery-content .inner-content'),
+      galleryContent = container.querySelector('.gallery-content'),
+      list = galleryContent.querySelector('.inner-content'),
       allImgs = Array.from(container.querySelectorAll('.gallery-content .gallery-img')),
-      showBtn = container.querySelector('.show-btn');
+      showBtn = container.querySelector('.show-btn'),
+      popup = container.querySelector('.gallery-popup');
 
   // Create Gallery Columns
   function UI_init() {
@@ -71,6 +73,37 @@ const galleryMasonry = (function() {
       }
     }
   });
+
+  galleryContent.addEventListener('click', (e) => {
+    let pic = e.target.closest('.pic'),
+        picContainer = popup.querySelector('.pic-box');
+    if (pic) { // Open Popup lightbox
+      let imgPath = pic.querySelector('img').src;
+      if (!picContainer.children[0]) {
+        let newImg = document.createElement('img');
+        newImg.className = 'gallery-img';
+        newImg.src = imgPath;
+        picContainer.appendChild(newImg);
+      } else {
+        picContainer.children[0].src = imgPath;
+      }
+      popup.classList.add('active');
+      popup.classList.add('fadeIn2');
+    }
+  });
+
+  popup.addEventListener('click', (e) => {
+    if (e.target.closest('.arrow')) { // Arrow
+
+    } else if (e.target.closest('.close-btn') || (popup.classList.contains('active') && !e.target.classList.contains('gallery-img'))) { // Close popup
+      popup.classList.remove('fadeIn2');
+      popup.classList.add('fadeOut2');
+      setTimeout(() => {
+        popup.classList.remove('active');
+        popup.classList.remove('fadeOut2');
+      }, 240);
+    }
+  })
 
   UI_init();
   window.onload = function() {

@@ -156,7 +156,7 @@ html, body {
 }
 
 .gallery-masonry .gallery-popup {
-  display: block;
+  display: none;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -166,6 +166,11 @@ html, body {
   height: 100%;
   background-color: rgba(0,0,0,.75);
   z-index: 99999;
+}
+
+.gallery-masonry .gallery-popup.active {
+  display: block;
+  opacity: 1;
 }
 
 .gallery-masonry .gallery-popup .inner-content {
@@ -195,8 +200,18 @@ html, body {
 
 .gallery-masonry .gallery-popup .close-button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 25px;
+  right: 35px;
+  z-index: 1;
+}
+
+.gallery-masonry .gallery-popup .close-button .close-btn {
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 50px;
+  outline: none;
 }
 
 .gallery-masonry .gallery-popup .gallery-img {
@@ -204,4 +219,58 @@ html, body {
   height: auto;
   max-width: 95%;
   max-height: 95%;
+}
+
+.gallery-masonry .gallery-popup .arrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  color: var(--mainColor);
+  background-color: #fff;
+  border: none;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px 0px;
+  outline: none;
+}
+
+.gallery-masonry .gallery-popup .arrow.disabled {
+  color: #9f9f9f;
+  cursor: auto;
+}
+
+.gallery-masonry .gallery-popup .arrows {
+  padding: 0 15px;
+  z-index: 1;
+}
+
+.gallery-masonry .gallery-popup .arrow.prev-arrow {
+  padding-right: 12px;
+}
+
+.gallery-masonry .gallery-popup .arrow.next-arrow {
+  padding-left: 12px;
+}
+
+.fadeIn2 {
+  opacity: 1;
+  animation: fadeIn2 0.25s ease-in-out;
+}
+
+.fadeOut2 {
+  opacity: 0;
+  animation: fadeOut2 0.25s ease-in-out;
+}
+
+@keyframes fadeIn2 {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes fadeOut2 {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
 }
