@@ -31,6 +31,7 @@ const galleryMasonry = (function() {
       colsHeight[colIndex] += allImgs[i].height + gap;
     }
     container.classList.add('ready');
+    getCurrList();
   }
 
   // Gallery Container animation
@@ -80,8 +81,6 @@ const galleryMasonry = (function() {
         picContainer = popup.querySelector('.pic-box');
     if (pic) { // Open Popup lightbox
       let currImg = pic.querySelector('img');
-      // Assign new gallery list
-      currList = Array.from(galleryContent.querySelectorAll('.gallery-img'));
       // Assign img index
       picIndex = currList.indexOf(currImg);
       if (!picContainer.children[0]) {
@@ -92,7 +91,6 @@ const galleryMasonry = (function() {
       } else {
         picContainer.children[0].src = currImg.src;
       }
-
       // Active Popup
       popup.classList.add('active');
       popup.classList.add('fadeIn2');
@@ -145,7 +143,24 @@ const galleryMasonry = (function() {
         popup.classList.remove('fadeOut2');
       }, 240);
     }
-  })
+  });
+
+  // Get Current Gallery List
+  function getCurrList() {
+    let cols = galleryContent.querySelectorAll('.gallery-column'),
+        counter = 0, rows = 0, arr = [];
+    
+    for (let i = 0; i < allImgs.length; i++) {
+      arr.push(cols[counter].children[rows].children[0]);
+      counter++
+      if (counter > columnsCount - 1) {
+        counter = 0;
+        rows++;
+      }
+    }
+    currList = arr;
+    return arr;
+  }
 
   UI_init();
   window.onload = function() {
