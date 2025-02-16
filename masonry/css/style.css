@@ -278,3 +278,22 @@ html, body {
   0% {opacity: 1;}
   100% {opacity: 0;}
 }
+
+@media only screen and (max-width: 675px) {
+  .gallery-masonry .gallery-popup .arrows {
+    padding: 0 8px;
+  }
+  .gallery-masonry .gallery-popup .close-button {
+    top: 15px;
+    right: 10px;
+  }
+
+  .gallery-masonry .gallery-popup .arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 19px;
+  }
+  .gallery-masonry .gallery-popup .close-button .close-btn {
+    font-size: 42px;
+  }
+}
