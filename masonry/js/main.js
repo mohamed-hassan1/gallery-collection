@@ -6,7 +6,8 @@ const galleryMasonry = (function() {
       list = galleryContent.querySelector('.inner-content'),
       allImgs = Array.from(container.querySelectorAll('.gallery-content .gallery-img')),
       showBtn = container.querySelector('.show-btn'),
-      popup = container.querySelector('.gallery-popup');
+      popup = container.querySelector('.gallery-popup'),
+      currList = null, picIndex = 0;
 
   // Create Gallery Columns
   function UI_init() {
@@ -78,23 +79,64 @@ const galleryMasonry = (function() {
     let pic = e.target.closest('.pic'),
         picContainer = popup.querySelector('.pic-box');
     if (pic) { // Open Popup lightbox
-      let imgPath = pic.querySelector('img').src;
+      let currImg = pic.querySelector('img');
+      // Assign new gallery list
+      currList = Array.from(galleryContent.querySelectorAll('.gallery-img'));
+      // Assign img index
+      picIndex = currList.indexOf(currImg);
       if (!picContainer.children[0]) {
         let newImg = document.createElement('img');
         newImg.className = 'gallery-img';
-        newImg.src = imgPath;
+        newImg.src = currImg.src;
         picContainer.appendChild(newImg);
       } else {
-        picContainer.children[0].src = imgPath;
+        picContainer.children[0].src = currImg.src;
       }
+
+      // Active Popup
       popup.classList.add('active');
       popup.classList.add('fadeIn2');
+      let nextBtn = popup.querySelector('.next-btn'),
+          prevBtn = popup.querySelector('.prev-btn');
+
+      // Check Next Button
+      if (!currList[picIndex + 1]) {
+        nextBtn.classList.add('disabled');
+      } else if (nextBtn.classList.contains('disabled')) {
+        nextBtn.classList.remove('disabled');
+      }
+
+      // Check Previous Button
+      if (!currList[picIndex - 1]) {
+        prevBtn.classList.add('disabled');
+      } else if (prevBtn.classList.contains('disabled')) {
+        prevBtn.classList.remove('disabled');
+      }
     }
   });
 
   popup.addEventListener('click', (e) => {
-    if (e.target.closest('.arrow')) { // Arrow
-
+    if (e.target.closest('.arrow:not(.disabled)')) { // Arrow
+      let nextBtn = e.target.closest('.next-btn') || e.target.closest('.arrows').querySelector('.next-btn'),
+          prevBtn = e.target.closest('.prev-btn') || e.target.closest('.arrows').querySelector('.prev-btn');
+      if (e.target.closest('.next-btn')) { // Next Button
+        if (currList[picIndex + 1]) {
+          picIndex += 1;
+          popup.querySelector('.gallery-img').src = currList[picIndex].src;
+          if (!currList[picIndex + 1]) {
+            nextBtn.classList.add('disabled');
+          }
+        }
+      } else { // Previous Button
+        if (currList[picIndex - 1]) {
+          picIndex -= 1;
+          popup.querySelector('.gallery-img').src = currList[picIndex].src;
+          // Check Prev button
+          if (!currList[picIndex - 1]) {
+            prevBtn.classList.add('disabled');
+          }
+        }
+      }
     } else if (e.target.closest('.close-btn') || (popup.classList.contains('active') && !e.target.classList.contains('gallery-img'))) { // Close popup
       popup.classList.remove('fadeIn2');
       popup.classList.add('fadeOut2');

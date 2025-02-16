@@ -247,11 +247,11 @@ html, body {
   z-index: 1;
 }
 
-.gallery-masonry .gallery-popup .arrow.prev-arrow {
+.gallery-masonry .gallery-popup .arrow.prev-btn {
   padding-right: 12px;
 }
 
-.gallery-masonry .gallery-popup .arrow.next-arrow {
+.gallery-masonry .gallery-popup .arrow.next-btn {
   padding-left: 12px;
 }
 
