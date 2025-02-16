@@ -1,0 +1,49 @@
+/* *** Custom *** */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", serif;
+}
+
+/* *** Gallery Masonry ***/
+
+.gallery-masonry .gallery-container {
+  max-width: 1720px;
+  margin: 0 auto;
+  opacity: 0;
+  height: 400px;
+  overflow: hidden;
+}
+
+.gallery-masonry.ready .gallery-container {
+  opacity: 1;
+  height: auto;
+  overflow: auto;
+}
+
+.gallery-masonry .gallery-content .gallery-img {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+
+.gallery-masonry .gallery-content .inner-content .pic {
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-masonry .gallery-content .inner-content .pic:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.gallery-masonry .gallery-content .inner-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
