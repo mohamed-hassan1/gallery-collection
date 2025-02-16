@@ -54,7 +54,7 @@ html, body {
 
 .gallery-masonry .gallery-content .inner-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 15px;
 }
 
@@ -135,6 +135,10 @@ html, body {
   text-align: center;
 }
 
+.gallery-masonry .gallery-content.active + .gallery-control .inner-content {
+  padding: 40px 0 10px 0;
+}
+
 .gallery-masonry .gallery-control .show-btn {
   color: var(--mainColor);
   border: 1px solid var(--mainColor);
@@ -183,7 +187,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: max-content;
+  width: fit-content;
   height: 100%;
   margin: 0 auto;
 }

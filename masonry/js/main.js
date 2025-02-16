@@ -1,21 +1,23 @@
 const galleryMasonry = (function() {
-  let columnsCount = 4, gap = 15,
-      colsHeight = new Array(columnsCount).fill(0),
-      container = document.querySelector('.gallery-masonry'),
+  let container = document.querySelector('.gallery-masonry'),
       galleryContent = container.querySelector('.gallery-content'),
       list = galleryContent.querySelector('.inner-content'),
-      allImgs = Array.from(container.querySelectorAll('.gallery-content .gallery-img')),
       showBtn = container.querySelector('.show-btn'),
       popup = container.querySelector('.gallery-popup'),
-      currList = null, picIndex = 0;
+      currList = null, columnsCount = null, colsHeight = null, allImgs = null,
+      picIndex = 0, gap = 15;
 
   // Create Gallery Columns
-  function UI_init() {
+  function UI_cols() {
     for (let i = 0; i < columnsCount; i++) {
       let div = document.createElement('div');
       div.className = 'gallery-column';
       list.appendChild(div);
     }
+    // Sort Images by height
+    allImgs.sort((a,b) => b.height - a.height);
+    // Add Gallery
+    UI_gallery();
   }
 
   // Add Images to the columns
@@ -123,6 +125,8 @@ const galleryMasonry = (function() {
           popup.querySelector('.gallery-img').src = currList[picIndex].src;
           if (!currList[picIndex + 1]) {
             nextBtn.classList.add('disabled');
+          } else if (prevBtn.classList.contains('disabled')) {
+            prevBtn.classList.remove('disabled');
           }
         }
       } else { // Previous Button
@@ -132,6 +136,8 @@ const galleryMasonry = (function() {
           // Check Prev button
           if (!currList[picIndex - 1]) {
             prevBtn.classList.add('disabled');
+          } else if (nextBtn.classList.contains('disabled')) {
+            nextBtn.classList.remove('disabled');
           }
         }
       }
@@ -162,13 +168,57 @@ const galleryMasonry = (function() {
     return arr;
   }
 
-  UI_init();
-  window.onload = function() {
-    // Sort Images by height
-    allImgs.sort((a,b) => b.height - a.height);
-    UI_gallery();
+  // Init Gallery
+  function UI_init(status) {
+    let breakPoints = {
+      1181: {
+        cols: 3,
+        colsHeight: new Array(3).fill(0)
+      },
+      886: {
+        cols: 2,
+        colsHeight: new Array(2).fill(0)
+      },
+      591: {
+        cols: 1,
+        colsHeight: new Array(1).fill(0)
+      }
+    };
+
+    // Default
+    columnsCount = 4;
+    colsHeight = new Array(columnsCount).fill(0);
+    allImgs = Array.from(galleryContent.querySelectorAll('.gallery-img'));
+
+    // Assign small screen
+    let keysNum = Object.keys(breakPoints).map(Number).sort((a,b) => b-a);
+    for (let i = 0; i < keysNum.length; i++) {
+      let currKey = keysNum[i],
+          nxtKey = keysNum[i + 1] || 0;
+      if (window.innerWidth <= currKey && window.innerWidth > nxtKey) {
+        columnsCount = breakPoints[currKey].cols;
+        colsHeight = new Array(columnsCount).fill(0);
+      }
+    }
+
+    let cols = galleryContent.querySelectorAll('.gallery-column');
+    if (cols[0]) {
+      cols.forEach(item => item.remove());
+      galleryContent.style.height = window.getComputedStyle(galleryContent).minHeight;
+      galleryContent.classList.remove('active');
+      // Change Button text
+      showBtn.textContent = 'Show More';
+    }
+    // Add Columns
+    UI_cols();
   }
-
-
+  // On load
+  window.onload = function() {
+    UI_init('static');
+  }
+  // On resize
+  window.onresize = function() {
+    UI_init('resize');
+  }
 
 })();
