@@ -3,7 +3,7 @@ const galleryMasonry = (function() {
       colsHeight = new Array(columnsCount).fill(0),
       container = document.querySelector('.gallery-masonry'),
       list = container.querySelector('.gallery-content .inner-content'),
-      allImgs = Array.from(container.querySelectorAll('.gallery-img')),
+      allImgs = Array.from(container.querySelectorAll('.gallery-content .gallery-img')),
       showBtn = container.querySelector('.show-btn');
 
   // Create Gallery Columns
