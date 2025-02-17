@@ -157,11 +157,13 @@ const galleryMasonry = (function() {
         counter = 0, rows = 0, arr = [];
     
     for (let i = 0; i < allImgs.length; i++) {
-      arr.push(cols[counter].children[rows].children[0]);
-      counter++
-      if (counter > columnsCount - 1) {
-        counter = 0;
-        rows++;
+      if (cols[counter].children[rows]) {
+        arr.push(cols[counter].children[rows].children[0]);
+        counter++
+        if (counter > columnsCount - 1) {
+          counter = 0;
+          rows++;
+        }
       }
     }
     currList = arr;
