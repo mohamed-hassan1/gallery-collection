@@ -100,6 +100,8 @@ const galleryMasonry = (function() {
         if (counter <= max) { // Stop Animation
           content.style.height = max + 'px';
           clearInterval(slideDown);
+          // Scroll to the bottom of the Gallery
+					container.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }
       }
     }
