@@ -7,6 +7,21 @@ const galleryMasonry = (function() {
       currList = null, columnsCount = null, colsHeight = null, allImgs = null,
       picIndex = 0, gap = 15;
 
+  // Responsive Gallery Content Height
+  function getGallHeight() {
+    let num = null;
+    if (window.innerWidth > 1211) {
+      num = 1200;
+    } else if (window.innerWidth <= 1211 && window.innerWidth > 916) {
+      num = 780;
+    } else if (window.innerWidth <= 916 && window.innerWidth > 500) {
+      num = 700;
+    } else {
+      num = 600;
+    }
+    return num;
+  }
+
   // Create Gallery Columns
   function UI_cols() {
     for (let i = 0; i < columnsCount; i++) {
@@ -18,6 +33,16 @@ const galleryMasonry = (function() {
     allImgs.sort((a,b) => b.height - a.height);
     // Add Gallery
     UI_gallery();
+  }
+
+  // Detect Gallery Height Responsive
+  function UI_galleryHeight(num) {
+    let gheight = getGallHeight();
+    if (num <= gheight) {
+      container.classList.add('small-gallery');
+    } else if (num > gheight && container.classList.contains('small-gallery')) {
+      container.classList.remove('small-gallery');
+    }
   }
 
   // Add Images to the columns
@@ -32,6 +57,8 @@ const galleryMasonry = (function() {
       cols[colIndex].appendChild(div);
       colsHeight[colIndex] += allImgs[i].height + gap;
     }
+    // Calculate Gallery Height
+    UI_galleryHeight(Math.max(...colsHeight));
     container.classList.add('ready');
     getCurrList();
   }
@@ -40,7 +67,7 @@ const galleryMasonry = (function() {
   showBtn.addEventListener('click', function() {
     let content = container.querySelector('.gallery-content'),
         contentHeight = content.children[0].offsetHeight,
-        speed = 5, smooth = 40, max = Number(window.getComputedStyle(content).minHeight.replace('px',''));
+        speed = 5, smooth = 40, max = getGallHeight();
 
     if (!content.classList.contains('active')) { // Slide Down
       content.classList.add('active');
@@ -157,11 +184,13 @@ const galleryMasonry = (function() {
         counter = 0, rows = 0, arr = [];
     
     for (let i = 0; i < allImgs.length; i++) {
-      arr.push(cols[counter].children[rows].children[0]);
-      counter++
-      if (counter > columnsCount - 1) {
-        counter = 0;
-        rows++;
+      if (cols[counter].children[rows]) {
+        arr.push(cols[counter].children[rows].children[0]);
+        counter++
+        if (counter > columnsCount - 1) {
+          counter = 0;
+          rows++;
+        }
       }
     }
     currList = arr;
@@ -204,7 +233,8 @@ const galleryMasonry = (function() {
     let cols = galleryContent.querySelectorAll('.gallery-column');
     if (cols[0]) {
       cols.forEach(item => item.remove());
-      galleryContent.style.height = window.getComputedStyle(galleryContent).minHeight;
+      let gHeight = getGallHeight();
+      galleryContent.style.height = gHeight + 'px';
       galleryContent.classList.remove('active');
       // Change Button text
       showBtn.textContent = 'Show More';
