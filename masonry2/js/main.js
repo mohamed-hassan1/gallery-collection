@@ -5,6 +5,7 @@ const galleryMasonry = (function() {
       showBtn = container.querySelector('.show-btn'),
       tourBtn = document.querySelectorAll('.schedule-tour'),
       popup = container.querySelector('.gallery-popup'),
+      schedulePopup = container.querySelector('.schedule-popup'),
       currList = null, columnsCount = null, colsHeight = null, allImgs = null,
       picIndex = 0, gap = 15, gBtnTitle = null;
 
@@ -255,10 +256,12 @@ const galleryMasonry = (function() {
   if (tourBtn[0]) {
     tourBtn.forEach(item => {
       item.addEventListener('click', function() {
-        
+      // Active Popup
+      schedulePopup.classList.add('active');
+      schedulePopup.classList.add('fadeIn2');
 
 
-        
+
       });
     });
   }
