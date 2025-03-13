@@ -1,0 +1,334 @@
+/* *** Custom *** */
+
+:root {
+  --mainColor: #bbd020;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", serif;
+}
+
+.d-none {
+  display: none;
+}
+
+
+/* *** Gallery Masonry ***/
+
+.gallery-masonry {
+  padding: 100px 0;
+}
+
+.gallery-masonry .gallery-container {
+  max-width: 1720px;
+  margin: 0 auto;
+  opacity: 0;
+  height: 400px;
+  overflow: hidden;
+}
+
+.gallery-masonry.ready .gallery-container {
+  opacity: 1;
+  height: auto;
+  overflow: auto;
+}
+
+.gallery-masonry.small-gallery .gallery-container .gallery-control {
+  display: none;
+}
+
+.gallery-masonry .gallery-content .gallery-img {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+  transition: all 0.25s ease-in-out;
+}
+
+.gallery-masonry .gallery-content .inner-content .pic {
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-masonry .gallery-content .inner-content .pic:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.gallery-masonry .gallery-content .inner-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.gallery-masonry .gallery-content .pic {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+
+.gallery-masonry .gallery-content .pic::before {
+  opacity: 0;
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.45);
+  z-index: 1;
+  transition: all 0.25s ease-in-out;
+}
+
+.gallery-masonry .gallery-content .pic::after {
+  opacity: 0;
+  content: 'CLICK TO ENLARGE';
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  padding: 0 10px 10px 10px;
+  top: 20px;
+  left: 20px;
+  width: calc(100% - 62px);
+  height: calc(100% - 52px);
+  border: 1px solid #fff;
+  font-size: 20px;
+  z-index: 2;
+  transition: all 0.25s ease-in-out;
+}
+
+.gallery-masonry .gallery-content .pic:hover .gallery-img {
+  transform: scale(1.2);
+}
+
+.gallery-masonry .gallery-content .pic:hover::before,
+.gallery-masonry .gallery-content .pic:hover::after {
+  opacity: 1;
+}
+
+.gallery-masonry:not(.small-gallery) .gallery-content {
+  position: relative;
+  height: 1200px;
+  min-height: 1200px;
+  overflow: hidden;
+}
+
+.gallery-masonry.small-gallery .gallery-content {
+  height: auto!important;
+  min-height: auto!important;
+}
+
+.gallery-masonry:not(.small-gallery) .gallery-content::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent 5%, #fff 90%);
+  z-index: 3;
+}
+
+.gallery-masonry .gallery-content.active::before {
+  display: none;
+}
+
+.gallery-masonry .gallery-control .inner-content {
+  padding: 20px 0 10px 0;
+  text-align: center;
+}
+
+.gallery-masonry .gallery-content.active + .gallery-control .inner-content {
+  padding: 40px 0 10px 0;
+}
+
+.gallery-masonry .gallery-control .btn {
+  color: var(--mainColor);
+  border: 1px solid var(--mainColor);
+  background-color: #fff;
+  font-family: inherit;
+  font-size: 18px;
+  padding: 12px 10px;
+  min-width: 170px;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .14);
+  transition: all 0.25s linear;
+}
+
+.gallery-masonry .gallery-control .btn:hover {
+  color: #fff;
+  background-color: var(--mainColor);
+}
+
+.gallery-masonry .gallery-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.75);
+  z-index: 99999;
+}
+
+.gallery-masonry .gallery-popup.active {
+  display: block;
+  opacity: 1;
+}
+
+.gallery-masonry .gallery-popup .inner-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gallery-masonry .gallery-popup .pic-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.gallery-masonry .gallery-popup .arrows {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.gallery-masonry .gallery-popup .close-button {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  z-index: 1;
+}
+
+.gallery-masonry .gallery-popup .close-button .close-btn {
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 50px;
+  outline: none;
+}
+
+.gallery-masonry .gallery-popup .gallery-img {
+  width: 100%;
+  height: auto;
+  max-width: 95%;
+  max-height: 95%;
+}
+
+.gallery-masonry .gallery-popup .arrow {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  color: var(--mainColor);
+  background-color: #fff;
+  border: none;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px 0px;
+  outline: none;
+}
+
+.gallery-masonry .gallery-popup .arrow.disabled {
+  color: #9f9f9f;
+  cursor: auto;
+}
+
+.gallery-masonry .gallery-popup .arrows {
+  padding: 0 15px;
+  z-index: 1;
+}
+
+.gallery-masonry .gallery-popup .arrow.prev-btn {
+  padding-right: 12px;
+}
+
+.gallery-masonry .gallery-popup .arrow.next-btn {
+  padding-left: 12px;
+}
+
+.fadeIn2 {
+  opacity: 1;
+  animation: fadeIn2 0.25s ease-in-out;
+}
+
+.fadeOut2 {
+  opacity: 0;
+  animation: fadeOut2 0.25s ease-in-out;
+}
+
+@keyframes fadeIn2 {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes fadeOut2 {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@media only screen and (max-width: 1211px) {
+  .gallery-masonry:not(.small-gallery) .gallery-content {
+    min-height: 780px;
+  }
+}
+
+@media only screen and (max-width: 916px) {
+  .gallery-masonry:not(.small-gallery) .gallery-content {
+    min-height: 700px;
+  }
+}
+
+@media only screen and (max-width: 675px) {
+  .gallery-masonry .gallery-popup .arrows {
+    padding: 0 8px;
+  }
+  .gallery-masonry .gallery-popup .close-button {
+    top: 15px;
+    right: 10px;
+  }
+
+  .gallery-masonry .gallery-popup .arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 19px;
+  }
+  .gallery-masonry .gallery-popup .close-button .close-btn {
+    font-size: 42px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .gallery-masonry:not(.small-gallery) .gallery-content {
+    min-height: 600px;
+  }
+}
+
+
+/* *** Gallery Masonry 2 ***/
+
