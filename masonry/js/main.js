@@ -5,7 +5,7 @@ const galleryMasonry = (function() {
       showBtn = container.querySelector('.show-btn'),
       popup = container.querySelector('.gallery-popup'),
       currList = null, columnsCount = null, colsHeight = null, allImgs = null,
-      picIndex = 0, gap = 15;
+      picIndex = 0, gap = 15, gBtnTitle = null;
 
   // Responsive Gallery Content Height
   function getGallHeight() {
@@ -69,6 +69,10 @@ const galleryMasonry = (function() {
         contentHeight = content.children[0].offsetHeight,
         speed = 5, smooth = 40, max = getGallHeight();
 
+    if (gBtnTitle == null) {
+      gBtnTitle = this.textContent;
+    }
+
     if (!content.classList.contains('active')) { // Slide Down
       content.classList.add('active');
       // Change Button text
@@ -89,7 +93,7 @@ const galleryMasonry = (function() {
     } else { // Slide Up
       content.classList.remove('active');
       // Change Button text
-      this.textContent = 'Show More';
+      this.textContent = gBtnTitle;
       let slideDown = setInterval(frame, speed),
       counter = contentHeight - smooth;
 
@@ -232,14 +236,15 @@ const galleryMasonry = (function() {
       }
     }
 
-    let cols = galleryContent.querySelectorAll('.gallery-column');
+    let cols = galleryContent.querySelectorAll('.gallery-column'),
+        btnTitle =  gBtnTitle || showBtn.textContent;
     if (cols[0]) {
       cols.forEach(item => item.remove());
       let gHeight = getGallHeight();
       galleryContent.style.height = gHeight + 'px';
       galleryContent.classList.remove('active');
       // Change Button text
-      showBtn.textContent = 'Show More';
+      showBtn.textContent = btnTitle;
     }
     // Add Columns
     UI_cols();
