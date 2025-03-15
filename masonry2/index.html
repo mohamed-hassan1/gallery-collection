@@ -73,148 +73,150 @@
             <div class="gallery-content"></div>
             <!-- Start Schedule Form -->
             <div class="schedule-form">
-              <button class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
-              <form>
+              <div class="inner-schedule">
+                <button class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <form>
 
-                <!-- Form Title -->
-                <h3 class="form-title">Schedule Tour</h3>
-                <!-- Tour Type Note -->
-                <div class="from-note">Tour Type
-                  <span class="icon"></span>
-                  <span class="note"></span>
-                </div>
-
-                <!-- Switch Button (Tour type) -->
-                <div class="switch-input">
-                  <div class="switch-type">
-                    <label for="type1">In-Person</label>
-                    <input type="radio" id="type1" name="tour-type" value="in-person">
+                  <!-- Form Title -->
+                  <h3 class="form-title">Schedule Tour</h3>
+                  <!-- Tour Type Note -->
+                  <div class="from-note">Tour Type
+                    <span class="icon"><i class="fa fa-question" aria-hidden="true"></i></span>
+                    <span class="note"></span>
                   </div>
-                  <div class="switch-type">
-                    <label for="type2">Video Chat</label>
-                    <input type="radio" id="type2" name="tour-type" value="video-chat">
+
+                  <!-- Switch Button (Tour type) -->
+                  <div class="switch-input d-none">
+                    <div class="switch-type">
+                      <label for="type1">In-Person</label>
+                      <input type="radio" id="type1" name="tour-type" value="in-person">
+                    </div>
+                    <div class="switch-type">
+                      <label for="type2">Video Chat</label>
+                      <input type="radio" id="type2" name="tour-type" value="video-chat">
+                    </div>
                   </div>
-                </div>
 
-                <!-- Days Input -->
-                <div class="tab-input-container">
-                  <ul class="tab-input">
-                    <!-- Tab -->
-                    <li class="tab">
-                      <div class="content">
-                        <div class="day">Wed</div>
-                        <div class="daynum">12</div>
-                        <div class="month">Mar</div>
-                      </div>
-                      <input type="radio" name="tab-day" value="Wed, 12 Mar">
-                    </li>
-                    <!-- Tab -->
-                    <!-- Tab -->
-                    <li class="tab">
-                      <div class="content">
-                        <div class="day">Wed</div>
-                        <div class="daynum">12</div>
-                        <div class="month">Mar</div>
-                      </div>
-                      <input type="radio" name="tab-day" value="Wed, 12 Mar">
-                    </li>
-                    <!-- Tab -->
-                    <!-- Tab -->
-                    <li class="tab">
-                      <div class="content">
-                        <div class="day">Wed</div>
-                        <div class="daynum">12</div>
-                        <div class="month">Mar</div>
-                      </div>
-                      <input type="radio" name="tab-day" value="Wed, 12 Mar">
-                    </li>
-                    <!-- Tab -->
-                    <!-- Tab -->
-                    <li class="tab">
-                      <div class="content">
-                        <div class="day">Wed</div>
-                        <div class="daynum">12</div>
-                        <div class="month">Mar</div>
-                      </div>
-                      <input type="radio" name="tab-day" value="Wed, 12 Mar">
-                    </li>
-                    <!-- Tab -->
-                    <!-- Tab -->
-                    <li class="tab">
-                      <div class="content">
-                        <div class="day">Wed</div>
-                        <div class="daynum">12</div>
-                        <div class="month">Mar</div>
-                      </div>
-                      <input type="radio" name="tab-day" value="Wed, 12 Mar">
-                    </li>
-                    <!-- Tab -->
-                    <!-- Tab -->
-                    <li class="tab">
-                      <div class="content">
-                        <div class="day">Wed</div>
-                        <div class="daynum">12</div>
-                        <div class="month">Mar</div>
-                      </div>
-                      <input type="radio" name="tab-day" value="Wed, 12 Mar">
-                    </li>
-                    <!-- Tab -->
-                    <!-- Tab -->
-                    <li class="tab">
-                      <div class="content">
-                        <div class="day">Wed</div>
-                        <div class="daynum">12</div>
-                        <div class="month">Mar</div>
-                      </div>
-                      <input type="radio" name="tab-day" value="Wed, 12 Mar">
-                    </li>
-                    <!-- Tab -->
-                  </ul>
-                </div>
-
-                <!-- Select Time -->
-                <select name="time">
-                  <option value="9:00 AM">9:00 AM</option>
-                  <option value="10:00 AM">10:00 AM</option>
-                  <option value="11:00 AM">11:00 AM</option>
-                  <option value="12:00 PM">12:00 PM</option>
-                  <option value="1:00 PM">1:00 PM</option>
-                </select>
-
-                <!-- Inputs Group (Name & Phone) -->
-                <div class="inputs-group">
-                  <!-- Name Input -->
-                  <div class="floating-input">
-                    <input type="text" name="" id="client-name" required>
-                    <label for="client-name">Name</label>
+                  <!-- Days Input -->
+                  <div class="tab-input-container d-none">
+                    <ul class="tab-input">
+                      <!-- Tab -->
+                      <li class="tab">
+                        <div class="content">
+                          <div class="day">Wed</div>
+                          <div class="daynum">12</div>
+                          <div class="month">Mar</div>
+                        </div>
+                        <input type="radio" name="tab-day" value="Wed, 12 Mar">
+                      </li>
+                      <!-- Tab -->
+                      <!-- Tab -->
+                      <li class="tab">
+                        <div class="content">
+                          <div class="day">Wed</div>
+                          <div class="daynum">12</div>
+                          <div class="month">Mar</div>
+                        </div>
+                        <input type="radio" name="tab-day" value="Wed, 12 Mar">
+                      </li>
+                      <!-- Tab -->
+                      <!-- Tab -->
+                      <li class="tab">
+                        <div class="content">
+                          <div class="day">Wed</div>
+                          <div class="daynum">12</div>
+                          <div class="month">Mar</div>
+                        </div>
+                        <input type="radio" name="tab-day" value="Wed, 12 Mar">
+                      </li>
+                      <!-- Tab -->
+                      <!-- Tab -->
+                      <li class="tab">
+                        <div class="content">
+                          <div class="day">Wed</div>
+                          <div class="daynum">12</div>
+                          <div class="month">Mar</div>
+                        </div>
+                        <input type="radio" name="tab-day" value="Wed, 12 Mar">
+                      </li>
+                      <!-- Tab -->
+                      <!-- Tab -->
+                      <li class="tab">
+                        <div class="content">
+                          <div class="day">Wed</div>
+                          <div class="daynum">12</div>
+                          <div class="month">Mar</div>
+                        </div>
+                        <input type="radio" name="tab-day" value="Wed, 12 Mar">
+                      </li>
+                      <!-- Tab -->
+                      <!-- Tab -->
+                      <li class="tab">
+                        <div class="content">
+                          <div class="day">Wed</div>
+                          <div class="daynum">12</div>
+                          <div class="month">Mar</div>
+                        </div>
+                        <input type="radio" name="tab-day" value="Wed, 12 Mar">
+                      </li>
+                      <!-- Tab -->
+                      <!-- Tab -->
+                      <li class="tab">
+                        <div class="content">
+                          <div class="day">Wed</div>
+                          <div class="daynum">12</div>
+                          <div class="month">Mar</div>
+                        </div>
+                        <input type="radio" name="tab-day" value="Wed, 12 Mar">
+                      </li>
+                      <!-- Tab -->
+                    </ul>
                   </div>
-                  <!-- Phone Input -->
-                  <div class="floating-input">
-                    <input type="number" name="" id="client-phone" required>
-                    <label for="client-phone">Phone</label>
+
+                  <!-- Select Time -->
+                  <select name="time" class="d-none">
+                    <option value="9:00 AM">9:00 AM</option>
+                    <option value="10:00 AM">10:00 AM</option>
+                    <option value="11:00 AM">11:00 AM</option>
+                    <option value="12:00 PM">12:00 PM</option>
+                    <option value="1:00 PM">1:00 PM</option>
+                  </select>
+
+                  <!-- Inputs Group (Name & Phone) -->
+                  <div class="inputs-group d-none">
+                    <!-- Name Input -->
+                    <div class="floating-input">
+                      <input type="text" name="" id="client-name" required>
+                      <label for="client-name">Name</label>
+                    </div>
+                    <!-- Phone Input -->
+                    <div class="floating-input">
+                      <input type="number" name="" id="client-phone" required>
+                      <label for="client-phone">Phone</label>
+                    </div>
                   </div>
+
+                  <!-- Email Input -->
+                  <div class="floating-input d-none">
+                    <input type="email" name="" id="client-email" required>
+                    <label for="client-email">Email</label>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <input type="submit" value="Schedule Tour" class="btn btn2">
+
+                  <!-- Confirm Checkbox -->
+                  <div class="check-input d-flex align-items-center">
+                    <input type="checkbox" name="" id="confirm-fin">
+                    <label for="confirm-fin">I want to talk about financing</label>
+                  </div>
+
+                </form>
+
+                <!-- Terms -->
+                <div class="terms">
+                  <p>By pressing Schedule Tour, you agree that Trulia and real estate professionals may contact you via phone/text about your inquiry, which may involve the use of automated means. You are not required to consent as a condition of purchasing any property, goods or services. Message/data rates may apply. You also agree to our <a href="#">Terms of Use</a></p>
                 </div>
-
-                <!-- Email Input -->
-                <div class="floating-input">
-                  <input type="email" name="" id="client-email" required>
-                  <label for="client-email">Email</label>
-                </div>
-
-                <!-- Submit Button -->
-                <input type="submit" value="Schedule Tour">
-
-                <!-- Confirm Checkbox -->
-                <div class="check-input">
-                  <input type="checkbox" name="" id="confirm-fin">
-                  <label for="confirm-fin">I want to talk about financing</label>
-                </div>
-
-              </form>
-
-              <!-- Terms -->
-              <div class="terms">
-                <p>By pressing Schedule Tour, you agree that Trulia and real estate professionals may contact you via phone/text about your inquiry, which may involve the use of automated means. You are not required to consent as a condition of purchasing any property, goods or services. Message/data rates may apply. You also agree to our <a href="#">Terms of Use</a></p>
               </div>
 
             </div>
