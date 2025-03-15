@@ -6,6 +6,7 @@ const galleryMasonry = (function() {
       tourBtn = document.querySelectorAll('.schedule-tour'),
       popup = container.querySelector('.gallery-popup'),
       schedulePopup = container.querySelector('.schedule-popup'),
+      scheduleListing = schedulePopup.querySelector('.gallery-content'),
       currList = null, columnsCount = null, colsHeight = null, allImgs = null,
       picIndex = 0, gap = 15, gBtnTitle = null;
 
@@ -25,16 +26,16 @@ const galleryMasonry = (function() {
   }
 
   // Create Gallery Columns
-  function UI_cols() {
+  function UI_cols(ele) {
     for (let i = 0; i < columnsCount; i++) {
       let div = document.createElement('div');
       div.className = 'gallery-column';
-      list.appendChild(div);
+      ele.appendChild(div);
     }
     // Sort Images by height
     allImgs.sort((a,b) => b.height - a.height);
     // Add Gallery
-    UI_gallery();
+    UI_gallery(ele);
   }
 
   // Detect Gallery Height Responsive
@@ -48,8 +49,8 @@ const galleryMasonry = (function() {
   }
 
   // Add Images to the columns
-  function UI_gallery() {
-    let cols = container.querySelectorAll('.gallery-column');
+  function UI_gallery(ele) {
+    let cols = ele.querySelectorAll('.gallery-column');    
     for (let i = 0; i < allImgs.length; i++) {
       let div = document.createElement('div'),
           colMin = Math.min(...colsHeight),
@@ -62,7 +63,7 @@ const galleryMasonry = (function() {
     // Calculate Gallery Height
     UI_galleryHeight(Math.max(...colsHeight));
     container.classList.add('ready');
-    getCurrList();
+    getCurrList(ele);
   }
 
   // Gallery Container animation
@@ -113,7 +114,7 @@ const galleryMasonry = (function() {
     }
   });
 
-  galleryContent.addEventListener('click', (e) => {
+  container.addEventListener('click', (e) => {
     let pic = e.target.closest('.pic'),
         picContainer = popup.querySelector('.pic-box');
     if (pic) { // Open Popup lightbox
@@ -133,6 +134,8 @@ const galleryMasonry = (function() {
       popup.classList.add('fadeIn2');
       let nextBtn = popup.querySelector('.next-btn'),
           prevBtn = popup.querySelector('.prev-btn');
+
+      console.log(currList)
 
       // Check Next Button
       if (!currList[picIndex + 1]) {
@@ -187,8 +190,8 @@ const galleryMasonry = (function() {
   });
 
   // Get Current Gallery List
-  function getCurrList() {
-    let cols = galleryContent.querySelectorAll('.gallery-column'),
+  function getCurrList(ele) {
+    let cols = ele.querySelectorAll('.gallery-column'),
         counter = 0, rows = 0, arr = [];
     
     for (let i = 0; i < allImgs.length; i++) {
@@ -225,7 +228,9 @@ const galleryMasonry = (function() {
     // Default
     columnsCount = 4;
     colsHeight = new Array(columnsCount).fill(0);
-    allImgs = Array.from(galleryContent.querySelectorAll('.gallery-img'));
+    if (!allImgs) {
+      allImgs = Array.from(galleryContent.querySelectorAll('.gallery-img'));
+    }
 
     // Assign small screen
     let keysNum = Object.keys(breakPoints).map(Number).sort((a,b) => b-a);
@@ -249,7 +254,7 @@ const galleryMasonry = (function() {
       showBtn.textContent = btnTitle;
     }
     // Add Columns
-    UI_cols();
+    UI_cols(list);
   }
 
   // Schedule Tour Button
@@ -259,11 +264,24 @@ const galleryMasonry = (function() {
       // Active Popup
       schedulePopup.classList.add('active');
       schedulePopup.classList.add('fadeIn2');
-
-
-
+      UI_cols(scheduleListing);
       });
     });
+
+    // Popup
+    schedulePopup.addEventListener('click', function(e) {
+      if (e.target.closest('.close-btn') || (this.classList.contains('active') && !e.target.closest('.popup-content'))) { // Close popup
+        this.classList.remove('fadeIn2');
+        this.classList.add('fadeOut2');
+        UI_init('static');
+        setTimeout(() => {
+          this.classList.remove('active');
+          this.classList.remove('fadeOut2');
+          scheduleListing.innerHTML = '';
+        }, 240);
+      }
+    });
+
   }
 
   // On load
