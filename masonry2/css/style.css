@@ -743,20 +743,65 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 100%;
   opacity: 0;
   cursor: pointer;
+  z-index: 1;
 }
 
 .schedule-popup .tab-input .inner-tab {
-  border-radius: 6px;
   font-size: 14px;
   padding: 8px 4px;
-  border: 1px solid #b7b7b7;
+  border: 1px solid transparent;
+  transition: all 0.1s linear;
+  border-radius: 7px;
 }
 
-.schedule-popup .tab-input-container {
+.schedule-popup .tab-input .inner-tab:hover {
+  background-color: #f3f3f3;
+}
+
+.schedule-popup .tab-input-container .tabs-box {
   overflow: hidden;
 }
 
 .schedule-popup .tab-input .daynum {
   font-size: 20px;
   font-weight: 600;
+}
+
+.schedule-popup .tab-input .outline-line {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  border: 1px solid #b7b7b7;
+  border-radius: 6px;
+  transition: all 0.1s linear;
+}
+
+.schedule-popup .tab-input input:checked + .outline-line {
+  border: 2px solid var(--mainColor);
+}
+
+.schedule-popup .tab-input-container .slider-arrow .arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  outline: none;
+  border-radius: 100%;
+  background-color: #fff;
+  font-size: 12px;
+  left: -15px;
+  padding: 0px 4px 0 0px;
+  box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, .25);
+  z-index: 1;
+  cursor: pointer;
+  border: 1px solid #d9d9d9;
+}
+
+.schedule-popup .tab-input-container .slider-arrow .arrow-btn.next-btn {
+  left: auto;
+  right: -15px;
+  padding: 0px 0px 0 4px;
 }
