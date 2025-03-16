@@ -7,6 +7,9 @@ const galleryMasonry = (function() {
       popup = container.querySelector('.gallery-popup'),
       schedulePopup = container.querySelector('.schedule-popup'),
       scheduleListing = schedulePopup.querySelector('.gallery-content'),
+      noteBtn = container.querySelector('.form-note'),
+      selectBox = container.querySelector('.select-input select'),
+      floatingInputs = container.querySelectorAll('.floating-input input'),
       currList = null, columnsCount = null, colsHeight = null, allImgs = null,
       picIndex = 0, gap = 15, gBtnTitle = null;
 
@@ -283,6 +286,42 @@ const galleryMasonry = (function() {
     });
 
   }
+
+  // Form note button
+  noteBtn.addEventListener('mousemove', function(e) {
+    if ((e.target.closest('.form-note-btn') || e.target.closest('.note'))) {
+      this.querySelector('.note').classList.add('active');
+    } else if (!(e.target.closest('.form-note-btn') || e.target.closest('.note')) && this.querySelector('.note.active')) {
+      this.querySelector('.note.active').classList.remove('active');
+    }
+  });
+  noteBtn.addEventListener('mouseleave', function(e) {
+    this.querySelector('.note').classList.remove('active');
+  });
+
+  //SelectBox
+  selectBox.addEventListener('blur', function() {
+    this.parentElement.classList.remove('active');
+  });
+  selectBox.addEventListener('click', function() {
+    if (this.parentElement.classList.contains('active')) {
+      this.parentElement.classList.remove('active');
+    } else {
+      this.parentElement.classList.add('active');
+    }
+  });
+
+  // Floating Inputs
+  floatingInputs.forEach(item => {
+    item.addEventListener('input', function() {
+      if (this.parentElement.classList.contains('active') && this.value.trim() === '') {
+        this.parentElement.classList.remove('active');
+      } else if (!this.parentElement.classList.contains('active') && this.value.trim() !== '') {
+        this.parentElement.classList.add('active');
+      }
+    });
+  })
+
 
   // On load
   window.onload = function() {

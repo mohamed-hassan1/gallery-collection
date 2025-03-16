@@ -11,6 +11,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  color: #303030;
   font-size: 15px;
   font-family: "Poppins", serif;
 }
@@ -28,14 +29,6 @@ input, select {
   margin: 0;
 }
 
-input[type='checkbox'] {
-  width: 15px;
-  height: 15px;
-  margin-top: 2px;
-  accent-color: var(--mainColor);
-  cursor: pointer;
-}
-
 .d-flex {
   display: flex;
 }
@@ -46,6 +39,92 @@ input[type='checkbox'] {
 
 .align-items-center {
   align-items: center;
+}
+
+.position-relative {
+  position: relative;
+}
+
+input[type='email'],
+input[type='text'],
+input[type='number'],
+select {
+  font-family: inherit;
+  height: 49px;
+  color: inherit;
+  padding: 20px 12px 6px 12px;
+  width: 100%;
+  border: 1px solid #b7b7b7;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 400;
+  outline: none;
+}
+
+select {
+  padding: 12px 35px 12px 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+input[type='email']:focus,
+input[type='text']:focus,
+input[type='number']:focus {
+  border-color: var(--mainColor);
+}
+
+input[type='email']:focus + label,
+input[type='text']:focus + label,
+input[type='number']:focus + label {
+  font-size: 12px;
+  font-weight: 600;
+  top: 4px;
+  color: var(--mainColor);
+}
+
+.floating-input.active label {
+  font-size: 12px;
+  font-weight: 600;
+  top: 4px;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.select-input::before {
+  content: '\f078';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-family: 'FontAwesome';
+  font-weight: 900;
+  font-size: 14px;
+  color: inherit;
+  z-index: 1;
+  transition: all 0.15s linear;
+}
+
+.select-input.active::before {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.select-input::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 13px;
+  height: calc(100% - 20px);
+  right: 3px;
+  background-color: #ffffff;
 }
 
 /* *** Gallery Masonry ***/
@@ -240,15 +319,11 @@ input[type='checkbox'] {
 }
 
 .gallery-masonry .popup .inner-content {
-  position: relative;
   width: 100%;
   height: 100%;
 }
 
 .gallery-masonry .gallery-popup .pic-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: fit-content;
   height: 100%;
   margin: 0 auto;
@@ -260,7 +335,6 @@ input[type='checkbox'] {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  display: flex;
   justify-content: space-between;
 }
 
@@ -295,9 +369,6 @@ input[type='checkbox'] {
   background-color: #fff;
   border: none;
   font-size: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
   box-shadow: 0px 0px 5px 0px;
   outline: none;
@@ -381,24 +452,7 @@ input[type='checkbox'] {
 
 /* *** Gallery Masonry 2 ***/
 
-/**
-
-replace "gallery-popup" with "popup"
-
-.gallery-masonry .popup {
-.gallery-masonry .popup.active {
-.gallery-masonry .popup .inner-content {
-
-**/
-
-.schedule-popup .inner-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .schedule-popup .inner-content .popup-content {
-  display: flex;
   width: 100%;
   height: 100%;
   background-color: #fff;
@@ -413,8 +467,8 @@ replace "gallery-popup" with "popup"
 .schedule-popup .inner-content .gallery-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  flex: 0 0 calc(100% - 332px);
-  max-width: calc(100% - 332px);
+  flex: 0 0 calc(100% - 360px);
+  max-width: calc(100% - 360px);
   width: 100%;
   gap: 10px;
   padding-bottom: 10px;
@@ -431,9 +485,8 @@ replace "gallery-popup" with "popup"
 }
 
 .schedule-popup .inner-content .schedule-form {
-  position: relative;
-  flex: 0 0 332px;
-  max-width: 332px;
+  flex: 0 0 360px;
+  max-width: 360px;
   width: 100%;
   padding: 0px 0 10px 5px;
 }
@@ -456,9 +509,6 @@ replace "gallery-popup" with "popup"
   padding: 3px;
   width: 30px;
   height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   outline: none;
   box-shadow: none;
 }
@@ -491,5 +541,179 @@ replace "gallery-popup" with "popup"
 }
 
 .schedule-popup .inner-content .schedule-form form > div {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+.schedule-popup .form-note .icon {
+  font-size: 16px;
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  border-radius: 100%;
+  color: var(--mainColor);
+  border: 2px solid var(--mainColor);
+  cursor: pointer;
+  user-select: none;
+  margin-left: 8px;
+}
+
+.schedule-popup .check-input input[type='checkbox'] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.schedule-popup .check-input .inner-checkbox {
+  width: 21px;
+  height: 21px;
+}
+
+.schedule-popup .check-input .checkbox-box {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  border: 1px solid #b7b7b7;
+  background-color: #fff;
+  border-radius: 5px;
+  font-size: 13px;
+  padding-top: 1px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.schedule-popup .check-input .checkbox-box .icon {
+  display: none;
+}
+
+.schedule-popup .check-input input[type='checkbox']:checked + .checkbox-box {
+  background-color: var(--mainColor);
+}
+
+.schedule-popup .check-input input[type='checkbox']:checked + .checkbox-box .icon {
+  display: block;
+}
+
+.schedule-popup .form-note .note .inner {
+  position: absolute;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .22);
+  top: 16px;
+  font-size: 14px;
+  padding: 10px 14px;
+  z-index: 1;
+  border: 1px solid #e9e9e9;
+  left: 0px;
+}
+
+.schedule-popup .inner-content .schedule-form form .form-note {
+  margin-bottom: 20px;
+}
+
+.schedule-popup .form-note .note {
+  display: none;
+  position: absolute;
+  top: 20px;
+  padding-top: 20px;
+  width: 100%;
+  z-index: 4;
+}
+
+.schedule-popup .form-note .note.active {
+  display: block;
+}
+
+.schedule-popup .form-note .note .inner::before {
+  content: '';
+  border: 10px solid;
+  border-color: #ffffff transparent transparent #ffffff;
+  position: absolute;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  top: -7px;
+  left: 82px;
+  box-shadow: -2px -2px 4px -1px rgba(0, 0, 0, .15);
+}
+
+.schedule-popup .floating-input label {
+  position: absolute;
+  top: 14px;
+  left: 13px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #889096;
+  transition: all 0.12s linear;
+  cursor: text;
+  user-select: none;
+}
+
+.schedule-popup .floating-input.active label {
+  font-size: 12px;
+  font-weight: 600;
+  top: 4px;
+}
+
+.schedule-popup .inputs-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 10px;
+}
+
+.schedule-popup .switch-input {
+  border-radius: 6px;
+  background-color: #dfe2e5;
+}
+
+.schedule-popup .switch-input .switch-btn {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #b7b7b7;
+  border-radius: 6px;
+  z-index: 0;
+  transform: translateX(0px);
+  transition: all 0.3s ease-in-out;
+}
+
+.schedule-popup .switch-input label {
+  position: relative;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.schedule-popup .switch-input input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.schedule-popup .switch-input #type2 {
+  left: auto;
+  right: 0;
+}
+
+.schedule-popup .switch-input #type2:checked + .switch-btn {
+  transform: translateX(166px);
+}
+
+.schedule-popup .switch-type {
+  flex: 0 0 50%;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
 }

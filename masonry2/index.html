@@ -53,12 +53,12 @@
       <!-- End Gallery Control -->
       <!-- Start Gallery Popup -->
       <div class="popup gallery-popup">
-        <div class="inner-content">
-          <div class="pic-box"></div>
-          <div class="arrows">
+        <div class="inner-content position-relative">
+          <div class="pic-box d-flex align-items-center justify-content-center"></div>
+          <div class="arrows d-flex">
             <!-- Arrows -->
-            <button type="button" class="arrow prev-btn disabled"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-            <button type="button" class="arrow next-btn"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+            <button type="button" class="arrow prev-btn disabled d-flex justify-content-center align-items-center"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+            <button type="button" class="arrow next-btn d-flex justify-content-center align-items-center"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
           </div>
           <div class="close-button">
             <button type="button" class="close-btn"><i class="fa fa-times-circle-o" aria-hidden="true"></i></button>
@@ -68,33 +68,38 @@
       <!-- End Gallery Popup -->
       <!-- Start Schedule Tour Popup -->
       <div class="popup schedule-popup">
-        <div class="inner-content">
-          <div class="popup-content">
+        <div class="inner-content d-flex align-items-center justify-content-center position-relative">
+          <div class="popup-content d-flex">
             <div class="gallery-content"></div>
             <!-- Start Schedule Form -->
-            <div class="schedule-form">
+            <div class="schedule-form position-relative">
               <div class="inner-schedule">
-                <button class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button class="close-btn d-flex justify-content-center align-items-center"><i class="fa fa-times" aria-hidden="true"></i></button>
                 <form>
 
                   <!-- Form Title -->
                   <h3 class="form-title">Schedule Tour</h3>
                   <!-- Tour Type Note -->
-                  <div class="from-note">Tour Type
-                    <span class="icon"><i class="fa fa-question" aria-hidden="true"></i></span>
-                    <span class="note"></span>
+                  <div class="form-note d-flex align-items-center position-relative">Tour Type
+                    <span class="icon form-note-btn d-flex align-items-center justify-content-center">
+                      <i class="fa fa-question" aria-hidden="true"></i>
+                    </span>
+                    <span class="note">
+                      <span class="inner">If you’d like to tour this home without leaving yours, select the video chat tour type and discuss available options with the agent you are connected with.</span>
+                    </span>
                   </div>
 
                   <!-- Switch Button (Tour type) -->
-                  <div class="switch-input d-none">
-                    <div class="switch-type">
+                  <div class="switch-input d-flex position-relative">
+                    <div class="switch-type position-relative">
                       <label for="type1">In-Person</label>
-                      <input type="radio" id="type1" name="tour-type" value="in-person">
                     </div>
-                    <div class="switch-type">
+                    <input type="radio" id="type1" name="tour-type" value="in-person">
+                    <div class="switch-type position-relative">
                       <label for="type2">Video Chat</label>
-                      <input type="radio" id="type2" name="tour-type" value="video-chat">
                     </div>
+                    <input type="radio" id="type2" name="tour-type" value="video-chat">
+                    <span class="switch-btn"></span>
                   </div>
 
                   <!-- Days Input -->
@@ -174,30 +179,32 @@
                   </div>
 
                   <!-- Select Time -->
-                  <select name="time" class="d-none">
-                    <option value="9:00 AM">9:00 AM</option>
-                    <option value="10:00 AM">10:00 AM</option>
-                    <option value="11:00 AM">11:00 AM</option>
-                    <option value="12:00 PM">12:00 PM</option>
-                    <option value="1:00 PM">1:00 PM</option>
-                  </select>
+                  <div class="select-input position-relative">
+                    <select name="time">
+                      <option value="9:00 AM">9:00 AM</option>
+                      <option value="10:00 AM">10:00 AM</option>
+                      <option value="11:00 AM">11:00 AM</option>
+                      <option value="12:00 PM">12:00 PM</option>
+                      <option value="1:00 PM">1:00 PM</option>
+                    </select>
+                  </div>
 
                   <!-- Inputs Group (Name & Phone) -->
-                  <div class="inputs-group d-none">
+                  <div class="inputs-group">
                     <!-- Name Input -->
-                    <div class="floating-input">
+                    <div class="floating-input position-relative">
                       <input type="text" name="" id="client-name" required>
                       <label for="client-name">Name</label>
                     </div>
                     <!-- Phone Input -->
-                    <div class="floating-input">
+                    <div class="floating-input position-relative">
                       <input type="number" name="" id="client-phone" required>
                       <label for="client-phone">Phone</label>
                     </div>
                   </div>
 
                   <!-- Email Input -->
-                  <div class="floating-input d-none">
+                  <div class="floating-input position-relative">
                     <input type="email" name="" id="client-email" required>
                     <label for="client-email">Email</label>
                   </div>
@@ -207,7 +214,12 @@
 
                   <!-- Confirm Checkbox -->
                   <div class="check-input d-flex align-items-center">
-                    <input type="checkbox" name="" id="confirm-fin">
+                    <div class="inner-checkbox position-relative">
+                      <input type="checkbox" name="" id="confirm-fin">
+                      <div class="checkbox-box d-flex justify-content-center align-items-center">
+                        <span class="icon"><i class="fa fa-check" aria-hidden="true"></i></span>
+                      </div>
+                    </div>
                     <label for="confirm-fin">I want to talk about financing</label>
                   </div>
 
