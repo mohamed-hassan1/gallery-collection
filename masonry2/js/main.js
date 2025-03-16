@@ -10,8 +10,12 @@ const galleryMasonry = (function() {
       noteBtn = container.querySelector('.form-note'),
       selectBox = container.querySelector('.select-input select'),
       floatingInputs = container.querySelectorAll('.floating-input input'),
+      dateContainer = container.querySelector('.tab-input-container'),
+      dateArrow = dateContainer.querySelector('.slider-arrow'),
+      dateSlidesContainer = dateContainer.querySelector('.tab-input'),
+      dateSlides = dateSlidesContainer.querySelectorAll('.tab'),
       currList = null, columnsCount = null, colsHeight = null, allImgs = null,
-      picIndex = 0, gap = 15, gBtnTitle = null;
+      picIndex = 0, gap = 15, gBtnTitle = null, dsRowMax = 0, dsItemsMax = 4, dsCounter = 0;
 
   // Responsive Gallery Content Height
   function getGallHeight() {
@@ -320,8 +324,40 @@ const galleryMasonry = (function() {
         this.parentElement.classList.add('active');
       }
     });
-  })
+  });
 
+  // Date Slider
+  dateArrow.addEventListener('click', function(e) {
+    let prevBtn = e.target.closest('.prev-btn'),
+        nextBtn = e.target.closest('.next-btn');
+
+    if (nextBtn && (dsCounter + 1) < dsRowMax) { // Next Slides
+      dsCounter++;
+      dateSlidesContainer.style.transform = 'translateX(-' + ((dateContainer.offsetWidth + 10) * dsCounter) + 'px)';
+      if ((dsCounter + 1) === dsRowMax) {
+        nextBtn.classList.remove('active');
+        this.querySelector('.prev-btn').classList.add('active');
+      } else if ((dsCounter + 1) < dsRowMax) {
+        this.querySelector('.prev-btn').classList.add('active');
+      }
+    } else if (prevBtn && dsCounter > 0) { // Previous Slides
+      dsCounter--;
+      dateSlidesContainer.style.transform = 'translateX(-' + ((dateContainer.offsetWidth + 10) * dsCounter) + 'px)';
+      if (dsCounter === 0) {
+        prevBtn.classList.remove('active');
+        this.querySelector('.next-btn').classList.add('active');
+      } else if (dsCounter > 0) {
+        this.querySelector('.next-btn').classList.add('active');
+      }
+    }
+  });
+
+  // Check for slides length
+  if (dateSlides.length > 4) {
+    dateArrow.querySelector('.next-btn').classList.add('active');
+    // Calculate Date Slides Row
+    dsRowMax = Math.ceil(dateSlides.length / dsItemsMax);
+  }
 
   // On load
   window.onload = function() {

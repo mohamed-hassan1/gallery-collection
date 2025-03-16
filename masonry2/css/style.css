@@ -722,6 +722,8 @@ input[type="number"]::-webkit-outer-spin-button {
   padding: 0;
   margin: 0;
   list-style: none;
+  transform: translateX(0px);
+  transition: all 0.25s ease-in-out;
 }
 
 .schedule-popup .tab-input .tab {
@@ -783,6 +785,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .schedule-popup .tab-input-container .slider-arrow .arrow-btn {
+  display: none;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -793,7 +796,7 @@ input[type="number"]::-webkit-outer-spin-button {
   background-color: #fff;
   font-size: 12px;
   left: -15px;
-  padding: 0px 4px 0 0px;
+  padding: 0px 3px 0 0px;
   box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, .25);
   z-index: 1;
   cursor: pointer;
@@ -803,5 +806,9 @@ input[type="number"]::-webkit-outer-spin-button {
 .schedule-popup .tab-input-container .slider-arrow .arrow-btn.next-btn {
   left: auto;
   right: -15px;
-  padding: 0px 0px 0 4px;
+  padding: 0px 0px 0 3px;
+}
+
+.schedule-popup .tab-input-container .slider-arrow .arrow-btn.active {
+  display: flex;
 }
