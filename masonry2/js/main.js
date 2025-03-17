@@ -62,7 +62,7 @@ const galleryMasonry = (function() {
           colMin = Math.min(...colsHeight),
           colIndex = colsHeight.indexOf(colMin);
       div.className = 'pic';
-      div.appendChild(allImgs[i]);
+      div.appendChild(allImgs[i].cloneNode(true));
       cols[colIndex].appendChild(div);
       colsHeight[colIndex] += allImgs[i].height + gap;
     }
@@ -249,18 +249,25 @@ const galleryMasonry = (function() {
       }
     }
 
-    let cols = galleryContent.querySelectorAll('.gallery-column'),
+    let cols = container.querySelectorAll('.gallery-column'),
         btnTitle =  gBtnTitle || showBtn.textContent;
     if (cols[0]) {
       cols.forEach(item => item.remove());
       let gHeight = getGallHeight();
-      galleryContent.style.height = gHeight + 'px';
-      galleryContent.classList.remove('active');
+
+      container.querySelectorAll('.gallery-content').forEach(item => {
+        item.style.height = gHeight + 'px';
+        item.classList.remove('active');
+      });
+
       // Change Button text
       showBtn.textContent = btnTitle;
     }
     // Add Columns
     UI_cols(list);
+    if (scheduleListing && status === 'resize') {
+      UI_cols(scheduleListing);
+    }
   }
 
   // Schedule Tour Button
@@ -270,7 +277,10 @@ const galleryMasonry = (function() {
       // Active Popup
       schedulePopup.classList.add('active');
       schedulePopup.classList.add('fadeIn2');
-      UI_cols(scheduleListing);
+      // Check for listing
+      if (!scheduleListing.children.length) {
+        UI_cols(scheduleListing);
+      }
       });
     });
 

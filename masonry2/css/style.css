@@ -174,6 +174,10 @@ input[type="number"]::-webkit-outer-spin-button {
   gap: 15px;
 }
 
+.gallery-masonry .gallery-content .inner-content > img {
+  display: none;
+}
+
 .gallery-masonry .gallery-content .pic {
   position: relative;
   overflow: hidden;
@@ -447,6 +451,9 @@ input[type="number"]::-webkit-outer-spin-button {
   .gallery-masonry:not(.small-gallery) .gallery-content {
     min-height: 600px;
   }
+  .gallery-masonry .gallery-content .inner-content .pic:not(:last-child) {
+    margin-bottom: 10px;
+  }
 }
 
 
@@ -474,6 +481,8 @@ input[type="number"]::-webkit-outer-spin-button {
   padding-bottom: 10px;
   border-radius: 10px;
   overflow-y: auto;
+  height: inherit!important;
+  min-height: inherit!important;
 }
 
 .schedule-popup .inner-content .gallery-content .pic {
@@ -496,7 +505,7 @@ input[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 
-.schedule-popup .inner-content .schedule-form .close-btn {
+.schedule-popup .inner-content .close-btn {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -511,6 +520,13 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 30px;
   outline: none;
   box-shadow: none;
+}
+
+.schedule-popup .inner-content .popup-content > .close-btn {
+  width: 35px;
+  height: 35px;
+  right: 49px;
+  top: 27px;
 }
 
 .schedule-popup .inner-content .schedule-form .form-title {
@@ -814,3 +830,50 @@ input[type="number"]::-webkit-outer-spin-button {
 .schedule-popup .tab-input-container .slider-arrow .arrow-btn.active {
   display: flex;
 }
+
+.schedule-popup .inner-content .request-btn {
+  width: 100%;
+  margin-top: 13px;
+  border-radius: 6px;
+}
+
+@media only screen and (min-width: 992px) {
+  .schedule-popup .inner-content .request-btn,
+  .schedule-popup .inner-content .popup-content > .close-btn {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1305px) {
+  .schedule-popup .inner-content .gallery-content {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  }
+}
+
+@media only screen and (max-width:991px) {
+  .schedule-popup .inner-content .schedule-form {
+    display: none;
+  }
+  .schedule-popup .inner-content .gallery-content {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .schedule-popup .inner-content .popup-content {
+    flex-wrap: wrap;
+    padding: 50px 10px 76px 10px;
+  }
+}
+
+@media only screen and (max-width: 591px) {
+  .schedule-popup .inner-content .popup-content > .close-btn {
+    right: 30px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .schedule-popup .inner-content .popup-content > .close-btn {
+    right: 20px;
+  }
+}
+
+ /* 989*/
