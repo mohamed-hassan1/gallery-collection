@@ -13,6 +13,7 @@ const galleryMasonry = (function() {
       dateContainer = container.querySelector('.tab-input-container'),
       dateArrow = dateContainer.querySelector('.slider-arrow'),
       dateSlidesContainer = dateContainer.querySelector('.tab-input'),
+      requestBtn = container.querySelector('.request-btn'),
       currList = null, columnsCount = null, colsHeight = null, allImgs = null, dateArr = [],
       picIndex = 0, gap = 15, gBtnTitle = null, dsRowMax = 0, dsItemsMax = 4, dsCounter = 0;
 
@@ -286,7 +287,7 @@ const galleryMasonry = (function() {
 
     // Popup
     schedulePopup.addEventListener('click', function(e) {
-      if (e.target.closest('.close-btn') || (this.classList.contains('active') && !e.target.closest('.popup-content'))) { // Close popup
+      if ((e.target.closest('.close-btn') || (this.classList.contains('active') && !e.target.closest('.popup-content'))) || (schedulePopup.querySelector('.schedule-form.active') && (!e.target.closest('.btn') && !e.target.closest('.inner-schedule')))) { // Close popup
         this.classList.remove('fadeIn2');
         this.classList.add('fadeOut2');
         UI_init('static');
@@ -294,9 +295,20 @@ const galleryMasonry = (function() {
           this.classList.remove('active');
           this.classList.remove('fadeOut2');
           scheduleListing.innerHTML = '';
+          if (schedulePopup.querySelector('.schedule-form.active')) {
+            schedulePopup.querySelector('.schedule-form.active').classList.remove('active');
+          }
         }, 240);
       }
     });
+
+    // Request Info
+    requestBtn.addEventListener('click', function() {
+      let formEle = schedulePopup.querySelector('.schedule-form');
+      formEle.classList.add('active');
+      formEle.classList.add('fadeIn2');
+    });
+
 
   }
 

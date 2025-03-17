@@ -835,6 +835,7 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 100%;
   margin-top: 13px;
   border-radius: 6px;
+  font-size: 15px;
 }
 
 @media only screen and (min-width: 992px) {
@@ -853,6 +854,41 @@ input[type="number"]::-webkit-outer-spin-button {
 @media only screen and (max-width:991px) {
   .schedule-popup .inner-content .schedule-form {
     display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, .8);
+    left: 0;
+    top: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    z-index: 9999;
+  }
+  .schedule-popup .inner-content .schedule-form.active {
+    display: flex;
+    opacity: 1;
+  }
+  .schedule-popup .inner-content .schedule-form .inner-schedule {
+    position: relative;
+    background-color: #fff;
+    max-width: 490px;
+    position: relative;
+    padding: 15px 25px 15px 25px;
+    width: 100%;
+    border-radius: 25px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, .7);
+  }
+  .schedule-popup .inner-content .schedule-form .form-title {
+    margin-bottom: 15px;
+  }
+  .schedule-popup .inner-content .schedule-form .terms {
+    padding-top: 5px;
+  }
+  .schedule-popup .switch-input #type2:checked + .switch-btn {
+    transform: translateX(219px);
   }
   .schedule-popup .inner-content .gallery-content {
     flex: 0 0 100%;
@@ -860,7 +896,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
   .schedule-popup .inner-content .popup-content {
     flex-wrap: wrap;
-    padding: 50px 10px 76px 10px;
+    padding: 50px 10px 72px 10px;
   }
 }
 
@@ -870,10 +906,38 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
+@media only screen and (max-width: 575px) {
+  .schedule-popup .inner-content .schedule-form .inner-schedule {
+    max-width: 400px;
+  }
+  .schedule-popup .switch-input #type2:checked + .switch-btn {
+    transform: translateX(174px);
+  }
+}
+
 @media only screen and (max-width: 450px) {
   .schedule-popup .inner-content .popup-content > .close-btn {
     right: 20px;
   }
 }
 
- /* 989*/
+@media only screen and (max-width: 435px) {
+  .schedule-popup .inner-content .schedule-form .inner-schedule {
+    max-width: 376px;
+    border-radius: 20px;
+    padding: 10px 20px 10px 20px;
+  }
+  .schedule-popup .switch-input #type2:checked + .switch-btn {
+    transform: translateX(167px);
+  }
+}
+
+@media only screen and (max-width: 385px) {
+  .schedule-popup .inner-content .schedule-form .inner-schedule {
+    max-width: 350px;
+    padding: 10px 15px 10px 15px;
+  }
+  .schedule-popup .switch-input #type2:checked + .switch-btn {
+    transform: translateX(159px);
+  }
+} 
