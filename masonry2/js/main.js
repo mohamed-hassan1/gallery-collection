@@ -13,8 +13,7 @@ const galleryMasonry = (function() {
       dateContainer = container.querySelector('.tab-input-container'),
       dateArrow = dateContainer.querySelector('.slider-arrow'),
       dateSlidesContainer = dateContainer.querySelector('.tab-input'),
-      dateSlides = dateSlidesContainer.querySelectorAll('.tab'),
-      currList = null, columnsCount = null, colsHeight = null, allImgs = null,
+      currList = null, columnsCount = null, colsHeight = null, allImgs = null, dateArr = [],
       picIndex = 0, gap = 15, gBtnTitle = null, dsRowMax = 0, dsItemsMax = 4, dsCounter = 0;
 
   // Responsive Gallery Content Height
@@ -352,11 +351,59 @@ const galleryMasonry = (function() {
     }
   });
 
+  // Create Date
+  function getNextDays() {
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    let btn = dateSlidesContainer.querySelector('input[type="radio"]'),
+        days = Number(btn.getAttribute('data-days'));
+
+    for (let i = 1; i <= days; i++) {
+      let date = new Date();
+      date.setDate(date.getDate() + i);
+  
+      let day = weekDays[date.getDay()]; // Get weekday name
+      let dateNum = date.getDate().toString().padStart(2, "0"); // Ensure two digits
+      let month = monthNames[date.getMonth()]; // Get month name
+
+      let ui_li = document.createElement('li');
+      ui_li.className = 'tab';
+
+      ui_li.innerHTML = `
+      <div class="inner-tab position-relative">
+        <div class="content">
+          <div class="day">${day}</div>
+          <div class="daynum">${dateNum}</div>
+          <div class="month">${month}</div>
+        </div>
+
+        <span class="outline-line"></span>
+      </div>`;
+
+      dateArr.push(`${day}, ${dateNum} ${month}`);
+      dateSlidesContainer.appendChild(ui_li);
+    }
+
+    // Add Input button
+    for (let i = 0; i < days; i++) {
+      let btnCopy = btn.cloneNode(true),
+          item = dateSlidesContainer.querySelectorAll('.tab')[i].children[0],
+          line = item.querySelector('.outline-line');
+      // Set Input Value
+      btnCopy.value = dateArr[i];
+      item.insertBefore(btnCopy, line);
+    }
+    btn.remove();
+  }
+
+  // Create Days
+  getNextDays();
+
   // Check for slides length
-  if (dateSlides.length > 4) {
+  if (dateArr.length > dsItemsMax) {
     dateArrow.querySelector('.next-btn').classList.add('active');
     // Calculate Date Slides Row
-    dsRowMax = Math.ceil(dateSlides.length / dsItemsMax);
+    dsRowMax = Math.ceil(dateArr.length / dsItemsMax);
   }
 
   // On load

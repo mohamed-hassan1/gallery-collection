@@ -522,6 +522,7 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 10px;
+  box-shadow: rgba(59, 65, 68, 0.17) 0px 10px 21px -1px;
 }
 
 .schedule-popup .inner-content .schedule-form .terms {
@@ -731,6 +732,7 @@ input[type="number"]::-webkit-outer-spin-button {
   flex: 0 0 calc(25% - 7.5px);
   width: calc(25% - 7.5px);
   margin-left: 10px;
+  user-select: none;
 }
 
 .schedule-popup .tab-input .tab:first-child {
