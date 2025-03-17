@@ -20,7 +20,7 @@ html, body {
   font-family: "Poppins", serif;
 }
 
-.d-none {
+.gallery-masonry .d-none {
   display: none;
 }
 
@@ -33,26 +33,26 @@ input, select {
   margin: 0;
 }
 
-.d-flex {
+.gallery-masonry .d-flex {
   display: flex;
 }
 
-.justify-content-center {
+.gallery-masonry.justify-content-center {
   justify-content: center;
 }
 
-.align-items-center {
+.gallery-masonry .align-items-center {
   align-items: center;
 }
 
-.position-relative {
+.gallery-masonry .position-relative {
   position: relative;
 }
 
-input[type='email'],
-input[type='text'],
-input[type='number'],
-select {
+.gallery-masonry input[type='email'],
+.gallery-masonry input[type='text'],
+.gallery-masonry input[type='number'],
+.gallery-masonry select {
   font-family: inherit;
   height: 49px;
   color: inherit;
@@ -65,44 +65,44 @@ select {
   outline: none;
 }
 
-select {
+.gallery-masonry select {
   padding: 12px 35px 12px 12px;
   font-weight: 500;
   cursor: pointer;
 }
 
-input[type='email']:focus,
-input[type='text']:focus,
-input[type='number']:focus {
+.gallery-masonry input[type='email']:focus,
+.gallery-masonry input[type='text']:focus,
+.gallery-masonry input[type='number']:focus {
   border-color: var(--mainColor);
 }
 
-input[type='email']:focus + label,
-input[type='text']:focus + label,
-input[type='number']:focus + label {
+.gallery-masonry input[type='email']:focus + label,
+.gallery-masonry input[type='text']:focus + label,
+.gallery-masonry input[type='number']:focus + label {
   font-size: 12px;
   font-weight: 600;
   top: 4px;
   color: var(--mainColor);
 }
 
-.floating-input.active label {
+.gallery-masonry .floating-input.active label {
   font-size: 12px;
   font-weight: 600;
   top: 4px;
 }
 
-input[type="number"] {
+.gallery-masonry input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+.gallery-masonry input[type="number"]::-webkit-inner-spin-button,
+.gallery-masonry input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.select-input::before {
+.gallery-masonry .select-input::before {
   content: '\f078';
   position: absolute;
   top: 50%;
@@ -116,11 +116,11 @@ input[type="number"]::-webkit-outer-spin-button {
   transition: all 0.15s linear;
 }
 
-.select-input.active::before {
+.gallery-masonry .select-input.active::before {
   transform: translateY(-50%) rotate(180deg);
 }
 
-.select-input::after {
+.gallery-masonry .select-input::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -281,6 +281,10 @@ input[type="number"]::-webkit-outer-spin-button {
   cursor: pointer;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, .14);
   transition: all 0.25s linear;
+}
+
+.gallery-masonry .btn + .btn {
+  margin-left: 15px;
 }
 
 .gallery-masonry .btn:hover {
@@ -457,6 +461,9 @@ input[type="number"]::-webkit-outer-spin-button {
   }
   .gallery-masonry .gallery-content .inner-content .pic:not(:last-child) {
     margin-bottom: 10px;
+  }
+  .gallery-masonry .btn {
+    margin: 0 7.5px 15px 7.5px;
   }
 }
 
