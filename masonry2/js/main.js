@@ -429,6 +429,9 @@ const galleryMasonry = (function() {
             line = item.querySelector('.outline-line');
         // Set Input Value
         btnCopy.value = dateArr[i];
+        if (i === 0) {
+          btnCopy.checked = true;
+        }
         item.insertBefore(btnCopy, line);
       }
       btn.remove();
