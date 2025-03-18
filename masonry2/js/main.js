@@ -145,8 +145,6 @@ const galleryMasonry = (function() {
         let nextBtn = popup.querySelector('.next-btn'),
             prevBtn = popup.querySelector('.prev-btn');
 
-        console.log(currList)
-
         // Check Next Button
         if (!currList[picIndex + 1]) {
           nextBtn.classList.add('disabled');
