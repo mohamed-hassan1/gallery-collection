@@ -66,7 +66,7 @@ const galleryMasonry = (function() {
         div.className = 'pic';
         div.appendChild(allImgs[i].cloneNode(true));
         cols[colIndex].appendChild(div);
-        colsHeight[colIndex] += allImgs[i].height + gap;
+        colsHeight[colIndex] += div.offsetHeight + gap;
       }
       // Calculate Gallery Height
       UI_galleryHeight(Math.max(...colsHeight));
